@@ -16,6 +16,12 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('detail')->nullable();
+            $table->boolean('is_actived')->default(true);
+            $table->unsignedBigInteger('department_id');
+
+            $table->foreign('department_id')->references('id')->on('departments');
+
         });
     }
 

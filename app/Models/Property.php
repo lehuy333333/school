@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'detail',
+        'is_actived',
+        'department_id',
+    ];
+
+    public $timestamps = false;
 }
