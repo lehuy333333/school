@@ -22,4 +22,9 @@ class Property extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
