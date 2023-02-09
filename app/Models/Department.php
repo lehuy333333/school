@@ -15,4 +15,9 @@ class Department extends Model
     ];
 
     public $timestamps = false;
+
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
 }

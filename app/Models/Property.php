@@ -17,4 +17,9 @@ class Property extends Model
     ];
 
     public $timestamps = false;
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }
