@@ -53,10 +53,30 @@
                                 </li>
                             @endif
                         @else
-                            <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
-                            <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Roles</a></li>
-                            <li><a class="nav-link" href="{{ route('departments.index') }}">Manage Departments</a></li>
-                            <li><a class="nav-link" href="{{ route('properties.index') }}">Manage Properties</a></li>
+                            {{-- <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li> --}}
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    User Managerment
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>
+                                    <a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
+                                    <a class="dropdown-item" href="{{ route('departments.index') }}">Departments</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Property Managerment
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('properties.index') }}">Properties</a>
+                                    {{-- <a class="dropdown-item" href="{{ route('roles.index') }}">Manage Roles</a> --}}
+                                </div>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
