@@ -1,7 +1,8 @@
 <?php
     
 namespace App\Http\Controllers;
-    
+
+use App\Models\Department;
 use App\Models\Property;
 use Illuminate\Http\Request;
     
@@ -26,9 +27,9 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $products = Property::latest()->paginate(5);
-        return view('products.index',compact('products'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $properties = Property::paginate(10);
+        return view('properties.index',compact('properties'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
     
     /**
@@ -38,7 +39,8 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $departments = Department::pluck('name', 'id')->all();
+        return view('properties.create', compact('departments'));
     }
     
     /**
@@ -57,13 +59,13 @@ class PropertyController extends Controller
         Property::create($request->all());
     
         return redirect()->route('properties.index')
-                        ->with('success','Product created successfully.');
+                        ->with('success','Property created successfully.');
     }
     
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\property  $property
      * @return \Illuminate\Http\Response
      */
     public function show(Property $property)
@@ -74,19 +76,20 @@ class PropertyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\property  $property
      * @return \Illuminate\Http\Response
      */
     public function edit(Property $property)
     {
-        return view('properties.edit',compact('property'));
+        $departments = Department::pluck('name', 'id')->all();
+        return view('properties.edit',compact('property', 'departments'));
     }
     
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
+     * @param  \App\property  $property
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Property $property)
@@ -105,7 +108,7 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  \App\property  $property
      * @return \Illuminate\Http\Response
      */
     public function destroy(Property $property)
