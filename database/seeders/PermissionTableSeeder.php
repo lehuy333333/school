@@ -34,6 +34,10 @@ class PermissionTableSeeder extends Seeder
             'property-create',
             'property-edit',
             'property-delete',
+            'borrowing-list',
+            'borrowing-create',
+            'borrowing-edit',
+            'borrowing-delete',
         ];
        
         foreach ($permissions as $permission) {

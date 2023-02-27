@@ -53,7 +53,6 @@ class PropertyController extends Controller
     {
         request()->validate([
             'name' => 'required',
-            'detail' => 'required',
         ]);
     
         Property::create($request->all());
@@ -96,7 +95,6 @@ class PropertyController extends Controller
     {
          request()->validate([
             'name' => 'required',
-            'detail' => 'required',
         ]);
     
         $property->update($request->all());

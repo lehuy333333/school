@@ -8,12 +8,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'SchoolManagerment') }}</title>
+    <title>{{ config('app.name', 'School Managerment') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -61,9 +60,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @can('role-list')
                                     <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>
+                                    @endcan
+                                    @can('user-list')
                                     <a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
+                                    @endcan
+                                    @can('department-list')
                                     <a class="dropdown-item" href="{{ route('departments.index') }}">Departments</a>
+                                    @endcan
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -73,7 +78,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @can('property-list')
                                     <a class="dropdown-item" href="{{ route('properties.index') }}">Properties</a>
+                                    @endcan
                                     {{-- <a class="dropdown-item" href="{{ route('roles.index') }}">Manage Roles</a> --}}
                                 </div>
                             </li>

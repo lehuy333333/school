@@ -51,7 +51,6 @@ class DepartmentController extends Controller
     {
         request()->validate([
             'name' => 'required',
-            'detail' => 'required',
         ]);
     
         department::create($request->all());
@@ -93,7 +92,6 @@ class DepartmentController extends Controller
     {
          request()->validate([
             'name' => 'required',
-            'detail' => 'required',
         ]);
     
         $department->update($request->all());

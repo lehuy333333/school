@@ -16,14 +16,15 @@ return new class extends Migration
         Schema::create('borrowings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->timestamp('start_at');
-            $table->timestamp('end_at');
+            $table->timestamp('start_at')->nullable();
+            $table->timestamp('end_at')->nullable();
             $table->string('short_description')->nullable();
 
-            $table->boolean('is_applied')->default(false);
-            $table->boolean('is_done')->default(false);
+            $table->boolean('is_applied')->nullable();
             $table->string('cancel_reason')->nullable();
-            
+
+            $table->boolean('confirm_attend')->default(false);
+            $table->boolean('is_actived')->default(true);
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

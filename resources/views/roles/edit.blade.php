@@ -22,6 +22,10 @@
     @endif
     {!! Form::model($role, ['method' => 'PATCH', 'route' => ['roles.update', $role->id]]) !!}
     <div class="row">
+        <?php
+        $abc = '';
+        $len = count($permission);
+        ?>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
@@ -32,11 +36,33 @@
             <div class="form-group">
                 <strong>Permission:</strong>
                 <br />
-                @foreach ($permission as $value)
-                    <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, ['class' => 'name']) }}
-                        {{ $value->name }}</label>
-                    <br />
-                @endforeach
+                <div class="row">
+                    @foreach ($permission as $key => $value)
+                        <?php
+                        if ($key === 0) {
+                            echo '<div class="col-lg-4">';
+                        }
+                        
+                        if ($abc != substr($value->name, 0, strpos($value->name, '-')) && $key === 0) {
+                            $abc = substr($value->name, 0, strpos($value->name, '-'));
+                        
+                            echo '<b>' . strtoupper($abc) . '</b><div class="block">';
+                        } elseif ($abc != substr($value->name, 0, strpos($value->name, '-')) && $key !== 0) {
+                            $abc = substr($value->name, 0, strpos($value->name, '-'));
+                            echo '</div></div><div class="col-lg-4">';
+                            echo '<b>' . strtoupper($abc) . '</b><div class="block">';
+                        }
+                        ?>
+                        <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, ['class' => 'name']) }}
+                            {{ $value->name }}</label>
+                        <br />
+                        <?php
+                        if ($key === $len - 1) {
+                            echo '</div></div>';
+                        }
+                        ?>
+                    @endforeach
+                </div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
