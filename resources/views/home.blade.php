@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">{{ __('Notification') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -38,14 +38,22 @@
                                 }
                                 while ($date <= $end) {
                                     if ($date->day === \Carbon\Carbon::now()->day) {
-                                        echo '<div class="days"><span class="active">' . $date->day . '</span></div>';
+                                        echo '<div class="days"><a class="btn active" href="">' . $date->day . '</a></div>';
                                     } else {
-                                        echo '<div class="days">' . $date->day . '</div>';
+                                        echo '<div class="days"><a class="btn" href="">' . $date->day . '</a></div>';
                                     }
                                     $date->addDays(1);
                                 }
                             @endphp
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Dashboard') }}</div>
+
+                    <div class="card-body">
                     </div>
                 </div>
             </div>
@@ -58,7 +66,6 @@
         }
 
         .month {
-            padding: 20px;
             width: 100%;
             background: #1abc9c;
             text-align: center;
@@ -71,9 +78,7 @@
 
         .month ul li {
             color: white;
-            font-size: 20px;
             text-transform: uppercase;
-            letter-spacing: 3px;
         }
 
         .weekdays {
@@ -83,6 +88,8 @@
 
         .days {
             width: 14.28%;
+            height: 75px;
+            border:1px !important
         }
 
         .days .active {
