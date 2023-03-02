@@ -20,15 +20,20 @@
     <table class="table table-bordered mt-2">
         <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>Details</th>
+            <th>Property</th>
+            <th>Department</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Status</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($borrowings as $borrowing)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $borrowing->name }}</td>
-                <td>{{ $borrowing->detail }}</td>
+                <td>{{ $borrowing->property->name }}</td>
+                <td>{{ $borrowing->department->name }}</td>
+                <td>{{ $borrowing->start_at}}</td>
+                <td>{{ $borrowing->end_at}}</td>
                 <td>
                     <form action="{{ route('borrowings.destroy', $borrowing->id) }}" method="POST">
                         {{-- <a class="btn btn-info" href="{{ route('departments.show', $department->id) }}">Show</a> --}}

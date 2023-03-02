@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">{{ __('Notification') }}</div>
+                    <div class="card-header">{{ __('Calendar') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -28,6 +28,7 @@
                             <div class="weekdays">Sa</div>
                             <div class="weekdays">Su</div>
                             @php
+                                $btn_ennable = 'disabled';
                                 $start = \Carbon\Carbon::today()->startOfMonth();
                                 $end = \Carbon\Carbon::today()->endOfMonth();
                                 
@@ -39,8 +40,9 @@
                                 while ($date <= $end) {
                                     if ($date->day === \Carbon\Carbon::now()->day) {
                                         echo '<div class="days"><a class="btn active" href="">' . $date->day . '</a></div>';
+                                        $btn_ennable = '';
                                     } else {
-                                        echo '<div class="days"><a class="btn" href="">' . $date->day . '</a></div>';
+                                        echo '<div class="days" ><a class="btn '.$btn_ennable.'" href="" >' . $date->day . '</a></div>';
                                     }
                                     $date->addDays(1);
                                 }
