@@ -44,7 +44,7 @@
                                     }
                                     $date->addDays(1);
                                 }
-                            @endphp
+                            @endphp 
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
         .days {
             width: 14.28%;
             height: 75px;
-            border:1px !important
+            border: 1px !important
         }
 
         .days .active {

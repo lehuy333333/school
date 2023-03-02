@@ -31,6 +31,12 @@ return new class extends Migration
 
             $table->unsignedBigInteger('property_id');            
             $table->foreign('property_id')->references('id')->on('properties');
+
+            $table->unsignedBigInteger('created_by_user_id');
+            $table->foreign('created_by_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('updated_by_user_id');
+            $table->foreign('updated_by_id')->references('id')->on('users');
         });
     }
 
