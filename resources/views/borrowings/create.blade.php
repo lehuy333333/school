@@ -6,7 +6,7 @@
                 <h2>Add New Borrowing</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('borrowings.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('home') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -25,14 +25,19 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Name:</strong>
-                    <input type="text" name="name" class="form-control" placeholder="Name">
+                    <strong>Date:</strong>
+                    <input type="date" name="date" class="form-control" disabled
+                        value="{{ \Carbon\Carbon::parse($date_pick)->format('Y-m-d') }}">
+                </div>
+                <div class="form-group">
+                    <strong>Start time:</strong>
+                    <input type="time" name="time" class="form-control" >
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Detail:</strong>
-                    <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
+                    <strong>Department:</strong>
+                    {!! Form::select('department_id', $departments, [], ['class' => 'form-control']) !!}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

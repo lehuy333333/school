@@ -37,16 +37,26 @@
                                 for ($i = 1; $i < $date->dayOfWeek; $i++) {
                                     echo '<div class="days"></div>';
                                 }
-                                while ($date <= $end) {
-                                    if ($date->day === \Carbon\Carbon::now()->day) {
-                                        echo '<div class="days"><a class="btn active" href="">' . $date->day . '</a></div>';
+                            @endphp
+                            @while ($date <= $end)
+                                @if ($date->day === \Carbon\Carbon::now()->day)
+                                    <div class="days">
+                                        <a class="btn active"
+                                            href="{{ route('borrowings.create', 'date_pick=' . $date) }}">{{ $date->day }}</a>
+                                    </div>
+                                    @php
                                         $btn_ennable = '';
-                                    } else {
-                                        echo '<div class="days" ><a class="btn '.$btn_ennable.'" href="" >' . $date->day . '</a></div>';
-                                    }
+                                    @endphp
+                                @else
+                                    <div class="days">
+                                        <a class="btn {{ $btn_ennable }}"
+                                            href="{{ route('borrowings.create', 'date_pick=' . $date) }}">{{ $date->day }}</a>
+                                    </div>
+                                @endif
+                                @php
                                     $date->addDays(1);
-                                }
-                            @endphp 
+                                @endphp
+                            @endwhile
                         </div>
                     </div>
                 </div>

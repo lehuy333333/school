@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\BorrowingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
     Route::resource('departments', DepartmentController::class);
     Route::resource('properties', PropertyController::class);
+    Route::resource('borrowings', BorrowingController::class);
 });
