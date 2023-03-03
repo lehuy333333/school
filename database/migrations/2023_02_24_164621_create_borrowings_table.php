@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('borrowings', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->dateTime('start_at')->nullable();
             $table->dateTime('end_at')->nullable();
             $table->string('short_description')->nullable();

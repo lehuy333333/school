@@ -21,6 +21,8 @@ class Borrowing extends Model
         'property_id',
     ];
 
+    public $timestamps = false;
+
     public function property()
     {
         return $this->belongsTo(Department::class);
