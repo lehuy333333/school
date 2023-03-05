@@ -31,24 +31,27 @@
                 </div>
                 <div class="form-group">
                     <strong>Department:</strong>
-                    {!! Form::select('department_id', [null=>'Please Select'] + $departments, [], ['class' => 'form-control']) !!}
+                    {!! Form::select('department_id', [null => 'Please Select'] + $departments, [], ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     <strong>Property:</strong>
-                    <select id="properties" class="form-control" name="property_id"></select>
+                    {!! Form::select('property_id', [], [], ['class' => 'form-control', 'id' => 'properties']) !!}
                 </div>
-                <div class="form-group">
-                    <strong>Start time:</strong>
-                    <input type="time" name="start_time" class="form-control">
-                </div>
-                <div class="form-group">
-                    <strong>End time:</strong>
-                    <input type="time" name="end_time" class="form-control">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <strong>Start time:</strong>
+                        <input type="time" name="start_time" class="form-control">
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <strong>End time:</strong>
+                        <input type="time" name="end_time" class="form-control">
+                    </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
         </div>
     </form>
 @endsection
