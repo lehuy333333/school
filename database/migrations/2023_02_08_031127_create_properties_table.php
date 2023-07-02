@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('detail')->nullable();
+            $table->integer('amount');
             $table->boolean('is_actived')->default(true);
             $table->unsignedBigInteger('department_id');
 
