@@ -35,6 +35,9 @@
                         @can('department-edit')
                             <a class="btn btn-primary" href="{{ route('departments.edit', $department->id) }}">Edit</a>
                         @endcan
+                        @can('property-list')
+                            <a class="btn btn-primary" href="{{ route('properties.index', $department->id) }}">Properties</a>
+                        @endcan
                         @csrf
                         @method('DELETE')
                         @can('department-delete')

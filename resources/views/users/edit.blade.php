@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit New User</h2>
+                <h2>Edit User</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
@@ -24,14 +24,26 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Name:</strong>
-                {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                <strong>First Name:</strong>
+                {!! Form::text('first_name', null, ['placeholder' => 'First Name', 'class' => 'form-control']) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Last Middle Name:</strong>
+                {!! Form::text('last_middle_name', null, ['placeholder' => 'Last Middle Name', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Email:</strong>
                 {!! Form::text('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Phone Number:</strong>
+                {!! Form::text('phone_number', null, ['placeholder' => 'Phone Number', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

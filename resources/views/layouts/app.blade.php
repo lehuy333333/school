@@ -66,18 +66,18 @@
                                     @can('user-list')
                                     <a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
                                     @endcan
-                                    @can('department-list')
-                                    <a class="dropdown-item" href="{{ route('departments.index') }}">Departments</a>
-                                    @endcan
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Property Managerment
+                                    Department Managerment
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @can('department-list')
+                                    <a class="dropdown-item" href="{{ route('departments.index') }}">Departments</a>
+                                    @endcan
                                     @can('property-list')
                                     <a class="dropdown-item" href="{{ route('properties.index') }}">Properties</a>
                                     @endcan
@@ -87,7 +87,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->first_name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

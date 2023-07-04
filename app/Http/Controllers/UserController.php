@@ -44,14 +44,18 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_middle_name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'phone_number' => 'required',
         ]);
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
+        $input['first_name'] = strtolower($input['first_name']);
+        $input['last_middle_name'] = strtolower($input['last_middle_name']);
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
@@ -97,7 +101,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_middle_name' => 'required',
+            'phone_number' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
@@ -109,6 +115,8 @@ class UserController extends Controller
         } else {
             $input = Arr::except($input, array('password'));
         }
+        $input['first_name'] = strtolower($input['first_name']);
+        $input['last_middle_name'] = strtolower($input['last_middle_name']);
 
         $user = User::find($id);
         $user->update($input);

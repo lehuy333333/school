@@ -12,7 +12,8 @@ class Property extends Model
     protected $fillable = [
         'name',
         'detail',
-        'is_actived',
+        'inactive',
+        'amount',
         'department_id',
     ];
 
