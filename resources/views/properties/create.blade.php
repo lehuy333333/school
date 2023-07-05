@@ -6,7 +6,7 @@
                 <h2>Add New Property</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('properties.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('departments.properties.index', $department->id) }}"> Back</a>
             </div>
         </div>
     </div>
@@ -22,6 +22,7 @@
     @endif
     <form action="{{ route('properties.store') }}" method="POST">
         @csrf
+        <input type="hidden" name="department_id" value="{{$department->id}}">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
@@ -31,14 +32,14 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Detail:</strong>
-                    <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
+                    <strong>Amount:</strong>
+                    <input type="number" name="amount" class="form-control" placeholder="Amount">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Department:</strong>
-                    {!! Form::select('department_id', $departments, [], ['class' => 'form-control']) !!}
+                    <strong>Detail:</strong>
+                    <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -25,10 +25,11 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($department_id)
     {
-        $properties = Property::paginate(10);
-        return view('properties.index',compact('properties'))
+        $properties = Property::where('department_id', $department_id)->paginate(10);
+        $department = Department::find($department_id);
+        return view('properties.index',compact('properties', 'department'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
     
@@ -37,10 +38,10 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($department_id)
     {
-        $departments = Department::pluck('name', 'id')->all();
-        return view('properties.create', compact('departments'));
+        $department = Department::find($department_id);
+        return view('properties.create', compact('department'));
     }
     
     /**
@@ -53,11 +54,12 @@ class PropertyController extends Controller
     {
         request()->validate([
             'name' => 'required',
+            'amount' => 'required',
         ]);
     
         Property::create($request->all());
     
-        return redirect()->route('properties.index')
+        return redirect()->route('departments.properties.index', $request->department_id)
                         ->with('success','Property created successfully.');
     }
     
@@ -78,9 +80,8 @@ class PropertyController extends Controller
      * @param  \App\property  $property
      * @return \Illuminate\Http\Response
      */
-    public function edit(Property $property)
+    public function edit(Property $property, $department_id)
     {
-        $departments = Department::pluck('name', 'id')->all();
         return view('properties.edit',compact('property', 'departments'));
     }
     

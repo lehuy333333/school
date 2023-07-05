@@ -26,9 +26,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = department::paginate(5);
+        $departments = department::paginate(10);
         return view('departments.index',compact('departments'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
     
     /**
@@ -113,4 +113,11 @@ class DepartmentController extends Controller
         return redirect()->route('departments.index')
                         ->with('success','department deleted successfully');
     }
+
+    // public function properties(department $department)
+    // {
+    //     $properties = $department->properties;
+    //     dd($properties);
+    //     return view('property.index',compact('properties'));
+    // }
 }

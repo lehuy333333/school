@@ -78,9 +78,6 @@
                                     @can('department-list')
                                     <a class="dropdown-item" href="{{ route('departments.index') }}">Departments</a>
                                     @endcan
-                                    @can('property-list')
-                                    <a class="dropdown-item" href="{{ route('properties.index') }}">Properties</a>
-                                    @endcan
                                     {{-- <a class="dropdown-item" href="{{ route('roles.index') }}">Manage Roles</a> --}}
                                 </div>
                             </li>

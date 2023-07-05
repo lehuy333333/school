@@ -32,11 +32,14 @@
                 <td>
                     <form action="{{ route('departments.destroy', $department->id) }}" method="POST">
                         {{-- <a class="btn btn-info" href="{{ route('departments.show', $department->id) }}">Show</a> --}}
+                        @can('department-show')
+                            <a class="btn btn-info" href="{{ route('departments.show', $department->id) }}">Show</a>
+                        @endcan
                         @can('department-edit')
                             <a class="btn btn-primary" href="{{ route('departments.edit', $department->id) }}">Edit</a>
                         @endcan
                         @can('property-list')
-                            <a class="btn btn-primary" href="{{ route('properties.index', $department->id) }}">Properties</a>
+                            <a class="btn btn-secondary" href="{{ route('departments.properties.index', $department) }}">Properties</a>
                         @endcan
                         @csrf
                         @method('DELETE')

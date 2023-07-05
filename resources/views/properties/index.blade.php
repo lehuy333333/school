@@ -3,11 +3,12 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Properties</h2>
+                <h2>{{$department->name}} - Properties</h2>
             </div>
             <div class="pull-right">
+                <a class="btn btn-primary" href="{{ route('departments.index') }}"> Back</a>
                 @can('property-create')
-                    <a class="btn btn-success" href="{{ route('properties.create') }}"> Create New Property</a>
+                    <a class="btn btn-success" href="{{ route('departments.properties.create', $department->id)}}"> Create New Property</a>
                 @endcan
             </div>
         </div>
@@ -21,16 +22,14 @@
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th>Details</th>
-            <th>Department</th>
+            <th>Amount</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($properties as $property)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $property->name }}</td>
-                <td>{{ $property->detail }}</td>
-                <td>{{ $property->department->name }}</td>
+                <td>{{ $property->amount }}</td>
                 <td>
                     <form action="{{ route('properties.destroy', $property->id) }}" method="POST">
                         {{-- <a class="btn btn-info" href="{{ route('properties.show', $property->id) }}">Show</a> --}}
