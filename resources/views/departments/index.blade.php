@@ -21,14 +21,12 @@
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th>Details</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($departments as $department)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $department->name }}</td>
-                <td>{{ $department->detail }}</td>
                 <td>
                     <form action="{{ route('departments.destroy', $department->id) }}" method="POST">
                         {{-- <a class="btn btn-info" href="{{ route('departments.show', $department->id) }}">Show</a> --}}
