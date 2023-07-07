@@ -31,18 +31,19 @@
                     <form action="{{ route('departments.destroy', $department->id) }}" method="POST">
                         {{-- <a class="btn btn-info" href="{{ route('departments.show', $department->id) }}">Show</a> --}}
                         @can('department-show')
-                            <a class="btn btn-info" href="{{ route('departments.show', $department->id) }}">Show</a>
+                            <a class="btn btn-info" href="{{ route('departments.show', $department->id) }}"><i class="fa-solid fa-eye"></i></a>
                         @endcan
                         @can('department-edit')
-                            <a class="btn btn-primary" href="{{ route('departments.edit', $department->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('departments.edit', $department->id) }}"><i
+                                class="fa-solid fa-pencil"></i></a>
                         @endcan
                         @can('property-list')
-                            <a class="btn btn-secondary" href="{{ route('departments.properties.index', $department) }}">Properties</a>
+                            <a class="btn btn-secondary" href="{{ route('departments.properties.index', $department) }}"><i class="fa-solid fa-list"></i></a>
                         @endcan
                         @csrf
                         @method('DELETE')
                         @can('department-delete')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                         @endcan
                     </form>
                 </td>

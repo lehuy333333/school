@@ -32,14 +32,15 @@
                 <td>{{ $property->amount }}</td>
                 <td>
                     <form action="{{ route('properties.destroy', $property->id) }}" method="POST">
-                        {{-- <a class="btn btn-info" href="{{ route('properties.show', $property->id) }}">Show</a> --}}
+                        <a class="btn btn-info" href="{{ route('properties.show', $property->id) }}"><i class="fa-solid fa-eye"></i></a>
                         @can('property-edit')
-                            <a class="btn btn-primary" href="{{ route('properties.edit', $property->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('properties.edit', $property->id) }}"><i
+                                class="fa-solid fa-pencil"></i></a>
                         @endcan
                         @csrf
                         @method('DELETE')
                         @can('property-delete')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                         @endcan
                     </form>
                 </td>

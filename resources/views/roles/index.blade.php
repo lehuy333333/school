@@ -29,13 +29,14 @@
                 <td>{{ ++$i }}</td>
                 <td>{{ $role->name }}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('roles.show', $role->id) }}">Show</a>
+                    <a class="btn btn-info" href="{{ route('roles.show', $role->id) }}"><i class="fa-solid fa-eye"></i></a>
                     @can('role-edit')
-                        <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}"><i
+                                class="fa-solid fa-pencil"></i></a>
                     @endcan
                     @can('role-delete')
                         {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' => 'display:inline']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                        {{ Form::button('<i class="fa-solid fa-trash"></i>', ['class' => 'btn btn-danger', 'type' => 'submit']) }}
                         {!! Form::close() !!}
                     @endcan
                 </td>

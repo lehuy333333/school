@@ -36,10 +36,12 @@
                     @endif
                 </td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('users.show', $user->id) }}">Show</a>
-                    <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a>
+                    <a class="btn btn-info" href="{{ route('users.show', $user->id) }}"><i class="fa-solid fa-eye"></i>
+                    </a>
+                    <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"><i class="fa-solid fa-pencil"></i>
+                    </a>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' => 'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {{ Form::button('<i class="fa-solid fa-trash"></i>', ['class' => 'btn btn-danger', 'type' => 'submit']) }}
                     {!! Form::close() !!}
                 </td>
             </tr>
