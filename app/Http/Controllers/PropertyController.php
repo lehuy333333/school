@@ -69,8 +69,9 @@ class PropertyController extends Controller
      * @param  \App\property  $property
      * @return \Illuminate\Http\Response
      */
-    public function show(Property $property)
+    public function show($id)
     {
+        $property = Property::find($id);
         return view('properties.show',compact('property'));
     }
     
@@ -80,8 +81,10 @@ class PropertyController extends Controller
      * @param  \App\property  $property
      * @return \Illuminate\Http\Response
      */
-    public function edit(Property $property, $department_id)
+    public function edit($id)
     {
+        $property = Property::find($id);
+        $departments = Department::pluck('name', 'id');
         return view('properties.edit',compact('property', 'departments'));
     }
     
@@ -94,13 +97,17 @@ class PropertyController extends Controller
      */
     public function update(Request $request, Property $property)
     {
-         request()->validate([
+        $tmp_departmet = $property->department_id;
+        request()->validate([
             'name' => 'required',
+            'amount' => 'required',
+            'inactive' => 'required',
+            'department_id' => 'required',
         ]);
     
         $property->update($request->all());
     
-        return redirect()->route('properties.index')
+        return redirect()->route('departments.properties.index', $tmp_departmet)
                         ->with('success','Property updated successfully');
     }
     

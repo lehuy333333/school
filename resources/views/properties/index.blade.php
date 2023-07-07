@@ -23,6 +23,7 @@
             <th>No</th>
             <th>Name</th>
             <th>Amount</th>
+            <th>Actived</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($properties as $property)
@@ -30,11 +31,12 @@
                 <td>{{ ++$i }}</td>
                 <td>{{ $property->name }}</td>
                 <td>{{ $property->amount }}</td>
+                <td>{!! $property->inactive?'<i class="fa-solid fa-ban text-danger"></i>':'<i class="fa-solid fa-check text-success"></i>' !!}</td>
                 <td>
                     <form action="{{ route('properties.destroy', $property->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('properties.show', $property->id) }}"><i class="fa-solid fa-eye"></i></a>
+                        <a class="btn btn-info" href="{{ route('departments.properties.show', [$department->id,$property->id]) }}"><i class="fa-solid fa-eye"></i></a>
                         @can('property-edit')
-                            <a class="btn btn-primary" href="{{ route('properties.edit', $property->id) }}"><i
+                            <a class="btn btn-primary" href="{{ route('departments.properties.edit', [$department->id,$property->id]) }}"><i
                                 class="fa-solid fa-pencil"></i></a>
                         @endcan
                         @csrf
