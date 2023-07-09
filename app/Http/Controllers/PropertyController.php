@@ -69,9 +69,9 @@ class PropertyController extends Controller
      * @param  \App\property  $property
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($department, $property)
     {
-        $property = Property::find($id);
+        $property = Property::find($property);
         return view('properties.show',compact('property'));
     }
     
@@ -81,10 +81,11 @@ class PropertyController extends Controller
      * @param  \App\property  $property
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($department, $property)
     {
-        $property = Property::find($id);
+        $property = Property::find($property);
         $departments = Department::pluck('name', 'id');
+        
         return view('properties.edit',compact('property', 'departments'));
     }
     
@@ -119,9 +120,10 @@ class PropertyController extends Controller
      */
     public function destroy(Property $property)
     {
+        $department_id = $property->department_id;
         $property->delete();
     
-        return redirect()->route('properties.index')
+        return redirect()->route('departments.properties.index', $department_id)
                         ->with('success','Property deleted successfully');
     }
 }
