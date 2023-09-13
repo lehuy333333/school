@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'SchoolManagerment'),
+    'name' => env('APP_NAME', 'School Managerment'),
 
     /*
     |--------------------------------------------------------------------------

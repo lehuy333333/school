@@ -10,9 +10,15 @@ export default defineConfig({
             ],
         }),
     ],
-    resolve: {
-        alias: {
-            '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
-        }
-    },
+    // resolve: {
+    //     alias: {
+    //         '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
+    //         '~fontawesome': path.resolve(__dirname, 'node_modules/@fortawesome/fontawesome-free'),
+    //     },
+    // },
+    // module.exports = {
+    //     optimizeDeps: {
+    //         exclude: ["@fortawesome/fontawesome-free"]
+    //     }
+    // }
 });
