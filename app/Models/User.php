@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return ucwords("{$this->last_middle_name} {$this->first_name}");
     }
+
+    public function departments()
+    {
+        return $this->belongsToMany(Department::class);
+    }
 }

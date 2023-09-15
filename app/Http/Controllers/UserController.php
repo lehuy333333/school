@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use DB;
@@ -32,7 +33,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name', 'name')->all();
-        return view('users.create', compact('roles'));
+        $departments = Department::pluck('name', 'name')->all();
+        return view('users.create', compact('roles', 'departments'));
     }
 
     /**
@@ -43,6 +45,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $this->validate($request, [
             'first_name' => 'required',
             'last_middle_name' => 'required',
@@ -54,8 +57,8 @@ class UserController extends Controller
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-        $input['first_name'] = strtolower($input['first_name']);
-        $input['last_middle_name'] = strtolower($input['last_middle_name']);
+        $input['first_name'] = mb_strtoupper($input['first_name'], 'UTF-8');
+        $input['last_middle_name'] = mb_strtoupper($input['last_middle_name'], 'UTF-8');
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
@@ -88,7 +91,10 @@ class UserController extends Controller
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
 
-        return view('users.edit', compact('user', 'roles', 'userRole'));
+        $departments = Department::pluck('name', 'name')->all();
+        $userDepartment = $user->roles->pluck('name', 'name')->all();
+
+        return view('users.edit', compact('user', 'roles', 'userRole', 'departments', 'userDepartment'));
     }
 
     /**
@@ -106,7 +112,7 @@ class UserController extends Controller
             'phone_number' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
         ]);
 
         $input = $request->all();
@@ -115,8 +121,8 @@ class UserController extends Controller
         } else {
             $input = Arr::except($input, array('password'));
         }
-        $input['first_name'] = strtolower($input['first_name']);
-        $input['last_middle_name'] = strtolower($input['last_middle_name']);
+        $input['first_name'] = mb_strtoupper($input['first_name'], 'UTF-8');
+        $input['last_middle_name'] = mb_strtoupper($input['last_middle_name'], 'UTF-8');
 
         $user = User::find($id);
         $user->update($input);

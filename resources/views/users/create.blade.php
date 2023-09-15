@@ -60,6 +60,12 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Department:</strong>
+                {!! Form::select('departments[]', $departments, [], ['class' => 'form-control', 'multiple']) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Role:</strong>
                 {!! Form::select('roles[]', $roles, [], ['class' => 'form-control', 'multiple']) !!}
             </div>

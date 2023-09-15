@@ -20,13 +20,13 @@ class CreateAdminUserSeeder extends Seeder
     {
         //Super Admin Seeder
         $user = User::create([
-            'first_name' => 'Admin', 
-            'last_middle_name' => 'Super', 
+            'first_name' => mb_strtoupper('Admin'), 
+            'last_middle_name' => mb_strtoupper('Super'), 
             'email' => 'superadmin@school.com',
             'password' => bcrypt('123123123')
         ]);
       
-        $role = Role::create(['name' => 'Super_Admin']);
+        $role = Role::create(['name' => 'Super Admin']);
        
         $permissions = Permission::pluck('id','id')->all();
      
